@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   GameView.class.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:05:38 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/25 17:06:27 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/27 16:11:47 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/27 16:20:21 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include <regex>
 
-#include "Main/Engine.class.hpp"
+#include "Main/GameView.class.hpp"
 
-int		main(void)
+AView*		GameView::Execute(std::string const &Input, char Player)
 {
-	Engine		Eng;
+	std::regex		Reg;
+	std::smatch		Match;
 
-	try
+	Reg.assign("([[:d:]]+)[[:s:]]+([[:d:]]+)");
+	if (std::regex_match(Input, Match, Reg))
 	{
-		Eng.Run();
+		this->_Engine.Put(Player, std::stoi(Match.str(1)), std::stoi(Match.str(2)));
+		return (nullptr);
 	}
-	catch (std::exception &e)
-	{
-		std::cout << "Uncaught exception: " << e.what() << std::endl;
-	}
-	return (0);
+	throw WrongInputError(Input);
 }

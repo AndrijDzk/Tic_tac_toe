@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Database.class.Coplien.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:05:38 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/25 17:06:27 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/27 10:15:42 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/27 10:16:35 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Main/Database.class.hpp"
 
-#include "Main/Engine.class.hpp"
+Database::Database(size_t Size) : Field(Size, std::vector<char>(Size, 0)) {}
 
-int		main(void)
-{
-	Engine		Eng;
-
-	try
-	{
-		Eng.Run();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Uncaught exception: " << e.what() << std::endl;
-	}
-	return (0);
-}
+Database::~Database(void) {}

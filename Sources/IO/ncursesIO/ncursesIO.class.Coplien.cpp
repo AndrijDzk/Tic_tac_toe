@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AInput.class.hpp                                   :+:      :+:    :+:   */
+/*   ncursesIO.class.Coplien.cpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:17:38 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/25 17:17:38 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/27 12:59:51 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/27 12:59:51 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "IO/ncursesIO.class.hpp"
 
-#include <utility>
+#ifdef NCURSES_ON
 
-class							AInput
-{
-public:
+ncursesIO::ncursesIO(void) {}
 
-	typedef struct				InputCommand
-	{
-		unsigned	x;
-		unsigned	y;
-	}							t_InputCommand;
+ncursesIO::~ncursesIO(void) {}
 
-	virtual t_InputCommand		ReadInput(void) = 0;
-
-	virtual void				Init(void) = 0;
-	virtual void				DeInit(void) = 0;
-};
+#endif

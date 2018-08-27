@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ConsoleIO.class.Base.cpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:05:38 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/25 17:06:27 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/25 17:56:13 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/27 15:32:43 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <regex>
 
-#include "Main/Engine.class.hpp"
+#include "IO/ConsoleIO.class.hpp"
 
-int		main(void)
+void			ConsoleIO::Init(void) {}
+
+void			ConsoleIO::DeInit(void) {}
+
+std::string		ConsoleIO::ReadInput(void)
 {
-	Engine		Eng;
+	std::string					Buff;
 
-	try
-	{
-		Eng.Run();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Uncaught exception: " << e.what() << std::endl;
-	}
-	return (0);
+	std::getline(std::cin, Buff);
+	return (Buff);
 }

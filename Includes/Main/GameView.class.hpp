@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AOutput.class.hpp                                  :+:      :+:    :+:   */
+/*   GameView.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:25:15 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/25 17:25:15 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/27 15:56:00 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/27 15:56:57 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-class				AOutput
+#include "Main/AView.class.hpp"
+
+class			GameView : public AView
 {
 public:
-	virtual void	Init(void) = 0;
-	virtual void	DeInit(void) = 0;
+	AView*		Execute(std::string const &Input, char Player) override;
 
-	virtual void	Display(void) = 0;
-	virtual void	Update(void) = 0;
+public:
+				GameView(Engine &Eng) : AView(Eng) {}
+				~GameView(void) {}
+
+private:
+				GameView(void);
+				GameView(GameView const &Src);
+	GameView	&operator=(GameView const &Rhs);
 };
