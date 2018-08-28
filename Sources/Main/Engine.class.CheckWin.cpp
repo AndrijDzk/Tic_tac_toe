@@ -14,7 +14,7 @@
 
 #include "Main/Engine.class.hpp"
 
-bool		Engine::CheckWin(std::vector<std::vector<char>> const &Field) const
+bool		Engine::CheckWin(t_Field const &Field) const
 {
 	for (size_t i = 0; i < Field.size(); i++)
 	{
@@ -31,34 +31,26 @@ bool		Engine::CheckWin(std::vector<std::vector<char>> const &Field) const
 		return (false);
 }
 
-bool		Engine::CheckRow(
-				std::vector<std::vector<char>> const &Field,
-				size_t n) const
+bool		Engine::CheckRow(t_Field const &Field, size_t n) const
 {
-
 	for (size_t i = 1; i < Field[n].size(); i++)
 		if (Field[n][i] == 0 || Field[n][i] != Field[n][i - 1])
 			return (false);
 	return (true);
 }
 
-bool		Engine::CheckColumn(
-				std::vector<std::vector<char>> const &Field,
-				size_t n) const
+bool		Engine::CheckColumn(t_Field const &Field, size_t n) const
 {
-
 	for (size_t i = 1; i < Field.size(); i++)
 		if (Field[i][n] == 0 || Field[i][n] != Field[i - 1][n])
 			return (false);
 	return (true);
 }
 
-bool		Engine::CheckDiagonal(
-				std::vector<std::vector<char>> const &Field,
-				size_t start, int inc) const
+bool		Engine::CheckDiagonal(t_Field const &Field, size_t start, int inc) const
 {
-	size_t										x;
-	size_t										y;
+	size_t		x;
+	size_t		y;
 
 	y = start + inc;
 	x = 1;

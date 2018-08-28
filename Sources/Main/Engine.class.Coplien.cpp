@@ -18,7 +18,7 @@
 
 Engine::Engine(void) :
 	IO(new ConsoleIO),
-	DB(3),
+	Field(3, std::vector<char>(3, 0)),
 	View(new GameView(*this)),
 	Skynet(new AI(this)) {}
 

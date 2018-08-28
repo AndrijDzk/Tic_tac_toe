@@ -22,7 +22,7 @@ AView*		GameView::Execute(std::string const &Input, char Player)
 	Reg.assign("([[:d:]]+)[[:s:]]+([[:d:]]+)");
 	if (std::regex_match(Input, Match, Reg))
 	{
-		this->_Engine.Put(Player, std::stoi(Match.str(1)), std::stoi(Match.str(2)));
+		this->_Engine.Set(Player, std::stoi(Match.str(1)), std::stoi(Match.str(2)));
 		return (nullptr);
 	}
 	throw WrongInputError(Input);

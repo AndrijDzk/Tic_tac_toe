@@ -19,8 +19,6 @@ set(MAIN_SOURCES
 	"Engine.class.Coplien.cpp"
 	"Engine.class.Base.cpp"
 	"Engine.class.CheckWin.cpp"
-	"Database.class.Coplien.cpp"
-	"Database.class.Base.cpp"
 	"GameView.class.cpp"
 	"AI.class.Base.cpp"
 	"main.cpp")
