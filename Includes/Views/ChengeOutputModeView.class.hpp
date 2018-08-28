@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GameView.class.hpp                                 :+:      :+:    :+:   */
+/*   ChengeOutputModeView.class.hpp                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 15:56:00 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/27 15:56:57 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/28 15:32:14 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/28 15:32:14 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Main/AView.class.hpp"
+#include "Views/AView.class.hpp"
 
-class			GameView : public AView
+class							Engine::ChangeOutputModeView : public Engine::AView
 {
 public:
-	AView*		Execute(std::string const &Input, char Player) override;
+	size_t						Execute(std::string const &Input) override;
+	void						Display(void) override;
 
 public:
-				GameView(Engine &Eng) : AView(Eng) {}
-				~GameView(void) {}
+								ChangeOutputModeView(Engine &Eng) : AView(Eng) {}
+								~ChangeOutputModeView(void) {}
 
 private:
-				GameView(void);
-				GameView(GameView const &Src);
-	GameView	&operator=(GameView const &Rhs);
+								ChangeOutputModeView(void);
+								ChangeOutputModeView(ChangeOutputModeView const &Src);
+	ChangeOutputModeView		&operator=(ChangeOutputModeView const &Rhs);
 };

@@ -6,44 +6,30 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 18:20:07 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/28 11:30:05 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/28 15:18:58 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
 #include "Main/Engine.class.hpp"
-#include "Main/AView.class.hpp"
-#include "Main/AI.class.hpp"
+#include "Views/AView.class.hpp"
 
 int		Engine::Run(void)
 {
 	std::string					Command;
-	AView*						NewView = nullptr;
 	char						Player = 1;
-	std::pair<size_t, size_t>	AIMove;
 
 	this->IO->Init();
 	while (this->FreeSpaceExists() && !this->CheckWin(this->Field))
 	{
-		this->IO->Display(this->Field);
+		this->Views[CurrView]->Display();
 		this->IO->ClearErrorMsgs();
 		try
 		{
-			Command = this->IO->ReadInput();
-			NewView = this->View->Execute(Command, Player);
-			Player = 2;
-			if (this->FreeSpaceExists() == false)
-				return (0);
-			AIMove = this->Skynet->MakeMove(Player, this->Field);
-			this->Set(Player, AIMove.first, AIMove.second);
-			Player = 1;
-			if (NewView)
-			{
-				delete this->View;
-				this->View = NewView;
-				NewView = nullptr;
-			}
+			Command = std::to_string(static_cast<int>(Player)) + ",* ";
+			Command.append(this->IO->ReadInput());
+			this->CurrView = this->Views[CurrView]->Execute(Command);
 		}
 		catch (WrongInputError &e)
 		{
@@ -58,7 +44,7 @@ int		Engine::Run(void)
 			this->IO->AddErrorMsg(e.what());
 		}
 	}
-	this->IO->Display(this->Field);
+	this->IO->DisplayGame(this->Field);
 	return (0);
 }
 

@@ -11,19 +11,26 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(NAME "Tic-tac-toe")
 
 set(SDIR "Sources")
-set(SOURCES
-	"IO/AInputOutput.class.Coplien.cpp")
+set(SOURCES)
 
 set(MAIN_SDIR "Main")
 set(MAIN_SOURCES
 	"Engine.class.Coplien.cpp"
 	"Engine.class.Base.cpp"
 	"Engine.class.CheckWin.cpp"
-	"GameView.class.cpp"
 	"AI.class.Base.cpp"
 	"main.cpp")
 PREPEND(MAIN_SOURCES_REL ${MAIN_SDIR} ${MAIN_SOURCES})
 set(SOURCES ${SOURCES} ${MAIN_SOURCES_REL})
+
+set(VIEW_SDIR "Views")
+set(VIEW_SOURCES
+	"GameView.class.cpp"
+	"StartMenuView.class.cpp"
+	"GameMenuView.class.cpp"
+	"ChangeOutputModeView.class.cpp")
+PREPEND(VIEW_SOURCES_REL ${VIEW_SDIR} ${VIEW_SOURCES})
+set(SOURCES ${SOURCES} ${VIEW_SOURCES_REL})
 
 set(CONSOLE_IO_SDIR "IO/ConsoleIO")
 set(CONSOLE_IO_SOURCES

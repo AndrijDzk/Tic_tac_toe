@@ -6,7 +6,7 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 13:02:34 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/27 14:27:45 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/28 15:21:56 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ std::string			ncursesIO::ReadInput(void)
 	bzero(Buff, 10);
 	getnstr(Buff, 9);
 	return (std::string(Buff));
+}
+
+void		ncursesIO::AddErrorMsg(std::string const &Msg)
+{
+	this->ErrorMsgs.push_back(Msg);
+}
+
+void		ncursesIO::ClearErrorMsgs(void)
+{
+	this->ErrorMsgs.clear();
 }
 
 #endif

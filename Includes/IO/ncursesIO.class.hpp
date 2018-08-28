@@ -6,12 +6,12 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:53:32 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/27 14:23:16 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/28 12:47:54 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#define NCURSES_ON
+#include "Main/Defines.hpp"
 #ifdef NCURSES_ON
 
 #include <vector>
@@ -27,12 +27,17 @@ public:
 	void							DeInit(void) override;
 	std::string						ReadInput(void) override;
 
-	void							Display(std::vector<std::vector<char>> const &Field) override;
+	void							DisplayGame(std::vector<std::vector<char>> const &Field) override;
+	void							DisplayGameMenu(void) override;
+	void							DisplayStartMenu(void) override;
+	void							DisplayChangeOutputMenu(void) override;
+
 	void							AddErrorMsg(std::string const &Msg) override;
 	void							ClearErrorMsgs(void) override;
 
 private:
 	std::vector<std::string>		ErrorMsgs;
+	void							DisplayMenu(std::vector<std::string> const &Options);
 
 public:
 	class WindowTooSmallError : public std::logic_error {public: WindowTooSmallError(int y, int x) : std::logic_error("Window too small: " + std::to_string(y) + " " + std::to_string(x)) {}};

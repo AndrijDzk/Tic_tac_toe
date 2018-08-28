@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ConsoleIO.class.Base.cpp                           :+:      :+:    :+:   */
+/*   GameMenuView.class.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/25 17:56:13 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/27 15:32:43 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/28 12:33:23 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/28 15:04:28 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include <regex>
 
-#include "IO/ConsoleIO.class.hpp"
+#include "Main/Defines.hpp"
 
-void			ConsoleIO::Init(void) {}
+#include "Views/GameMenuView.class.hpp"
 
-void			ConsoleIO::DeInit(void) {}
-
-std::string		ConsoleIO::ReadInput(void)
+size_t		Engine::GameMenuView::Execute(std::string const &Input)
 {
-	std::string					Buff;
+	std::regex		Reg;
+	std::smatch		Match;
 
-	std::getline(std::cin, Buff);
-	return (Buff);
+	Reg.assign(R"([[:d:]]+,(\*|O)[[:s:]]+R)");
+	if (std::regex_match(Input, Match, Reg))
+		return (GAME_VIEW);
+	throw WrongInputError();
 }
 
-void		ConsoleIO::AddErrorMsg(std::string const &Msg)
+void		Engine::GameMenuView::Display(void)
 {
-	this->ErrorMsgs.push_back(Msg);
-}
-
-void		ConsoleIO::ClearErrorMsgs(void)
-{
-	this->ErrorMsgs.clear();
+	this->Eng.IO->DisplayGameMenu();
 }

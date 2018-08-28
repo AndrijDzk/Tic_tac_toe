@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GameView.class.cpp                                 :+:      :+:    :+:   */
+/*   GameView.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 16:11:47 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/27 16:20:21 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/27 15:56:00 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/28 14:02:35 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <regex>
+#pragma once
 
-#include "Main/GameView.class.hpp"
+#include "AView.class.hpp"
 
-AView*		GameView::Execute(std::string const &Input, char Player)
+class			Engine::GameView : public Engine::AView
 {
-	std::regex		Reg;
-	std::smatch		Match;
+public:
+	size_t		Execute(std::string const &Input) override;
+	void		Display(void) override;
 
-	Reg.assign("([[:d:]]+)[[:s:]]+([[:d:]]+)");
-	if (std::regex_match(Input, Match, Reg))
-	{
-		this->_Engine.Set(Player, std::stoi(Match.str(1)), std::stoi(Match.str(2)));
-		return (nullptr);
-	}
-	throw WrongInputError(Input);
-}
+public:
+				GameView(Engine &Eng) : AView(Eng) {}
+				~GameView(void) {}
+
+private:
+				GameView(void);
+				GameView(GameView const &Src);
+	GameView	&operator=(GameView const &Rhs);
+};
