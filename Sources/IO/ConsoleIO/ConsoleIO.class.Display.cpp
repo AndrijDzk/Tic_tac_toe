@@ -68,7 +68,7 @@ void		ConsoleIO::DisplayChangeOutputMenu(void)
 									"[B]ack"};
 
 #ifndef NCURSES_ON
-	Options[1].append(" (unaviable)");
+	Options[1].append(" (unavailable)");
 #endif
 	this->DisplayMenu(Options);
 }

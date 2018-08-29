@@ -6,7 +6,7 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:11:47 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/29 14:51:12 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/29 14:51:18 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #include "Main/AI.class.hpp"
 #include "Views/GameView.class.hpp"
-#include "Views/GameMenuView.class.hpp"
 
 size_t		Engine::GameView::Execute(std::string const &Input)
 {
