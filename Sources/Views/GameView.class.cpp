@@ -6,7 +6,7 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:11:47 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/28 14:34:32 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/29 14:51:12 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,25 @@ size_t		Engine::GameView::Execute(std::string const &Input)
 	std::regex		Reg;
 	std::smatch		Match;
 	t_Point			AIMove;
-	char			Player;
 
-	Reg.assign(R"(([[:d:]]+),(\*|O)[[:s:]]([[:d:]]+)[[:s:]]+([[:d:]]+))");
+	Reg.assign(R"(([[:d:]]+)[[:s:]]+([[:d:]]+))");
 	if (std::regex_match(Input, Match, Reg))
 	{
-		if (std::stoi(Match.str(1)) > 127)
-			throw std::runtime_error("Wrong Player: " + Match.str(1));
-		Player = static_cast<char>(std::stoi(Match.str(1)));
-		this->Eng.Set(Player, std::stoi(Match.str(3)), std::stoi(Match.str(4)));
-		if (Player == 1)
-			Player = 2;
-		else
-			Player = 1;
-		if (Match.str(2) == "*" && this->Eng.FreeSpaceExists())
+		this->Eng.Set(this->Eng.CurrPlayer, std::stoi(Match.str(1)), std::stoi(Match.str(2)));
+		if (this->Eng.CheckGameOver())
+			return (GAME_OVER_VIEW);
+		this->Eng.ChangePlayer();
+		if (this->Eng.Players == OnePlayer)
 		{
-			AIMove = this->Eng.Skynet->MakeMove(Player, this->Eng.Field);
-			this->Eng.Set(Player, AIMove.first, AIMove.second);
+			AIMove = this->Eng.Skynet->MakeMove(this->Eng.CurrPlayer, this->Eng.Field);
+			this->Eng.Set(this->Eng.CurrPlayer, AIMove.first, AIMove.second);
+			if (this->Eng.CheckGameOver())
+				return (GAME_OVER_VIEW);
+			this->Eng.ChangePlayer();
 		}
 		return (GAME_VIEW);
 	}
-	Reg.assign(R"([[:d:]]+,(\*|O)[[:s:]]+Menu)");
+	Reg.assign(R"(Menu)");
 	if (std::regex_match(Input, Match, Reg))
 		return (GAME_MENU_VIEW);
 	throw WrongInputError();

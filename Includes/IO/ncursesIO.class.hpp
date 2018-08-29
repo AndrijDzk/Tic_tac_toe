@@ -31,6 +31,7 @@ public:
 	void							DisplayGameMenu(void) override;
 	void							DisplayStartMenu(void) override;
 	void							DisplayChangeOutputMenu(void) override;
+	void							DisplayGameOver(char Player) override;
 
 	void							AddErrorMsg(std::string const &Msg) override;
 	void							ClearErrorMsgs(void) override;

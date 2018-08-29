@@ -37,9 +37,10 @@ void		ncursesIO::DisplayGame(std::vector<std::vector<char>> const &Field)
 			else
 				mvaddch(i, j, '.');
 		}
-	mvprintw(static_cast<int>(4), 0, "Type 'Menu' to enter game menu");
-	for (i = 0; i < this->ErrorMsgs.size() && (i + 4) < static_cast<size_t>(y - 1); i++)
-		mvprintw(static_cast<int>(i + 4), 0, this->ErrorMsgs[i].c_str());
+	mvprintw(4, 0, "Type '[y] [x]' to make move");
+	mvprintw(5, 0, "Type 'Menu' to enter game menu");
+	for (i = 0; i < this->ErrorMsgs.size() && (5 + i) < static_cast<size_t>(y - 1); i++)
+		mvprintw(static_cast<int>(5 + i), 0, this->ErrorMsgs[i].c_str());
 	move(y - 1, 0);
 	refresh();
 }
@@ -75,6 +76,18 @@ void		ncursesIO::DisplayChangeOutputMenu(void)
 	this->DisplayMenu(Options);
 }
 
+void		ncursesIO::DisplayGameOver(char Player)
+{
+	std::vector<std::string>	Options = {
+									"Game Over!",
+									"Player " + std::to_string(static_cast<int>(Player)) + " won",
+									"[B]ack to Main menu"};
+
+	if (Player == 0)
+		Options[1] = "Draw";
+	this->DisplayMenu(Options);
+}
+
 void		ncursesIO::DisplayMenu(std::vector<std::string> const &Options)
 {
 	size_t							i;
@@ -100,5 +113,6 @@ void		ncursesIO::DisplayMenu(std::vector<std::string> const &Options)
 	move(y - 1, 0);
 	refresh();
 }
+
 
 #endif

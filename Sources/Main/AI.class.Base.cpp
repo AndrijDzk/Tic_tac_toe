@@ -6,7 +6,7 @@
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:45:13 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/28 12:20:33 by adzikovs         ###   ########.fr       */
+/*   Updated: 2018/08/29 14:54:47 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,12 @@ t_Point		Engine::AI::BFS(char Player, t_Field &Field)
 	while (Stack.empty() == false)
 	{
 		Front = Stack.front();
+		Stack.pop();
 		if (this->PathCompleted(Player, Field, FreePositions, Front))
 			return (FreePositions[Front[0]]);
 		if (Front.size() < FreePositions.size())
 			for (size_t i = 0; i < FreePositions.size(); i++)
-				if (std::find(Front.begin(), Front.end(), i) != Front.end())
+				if (std::find(Front.begin(), Front.end(), i) == Front.end())
 				{
 					Front.push_back(i);
 					Stack.push(Front);

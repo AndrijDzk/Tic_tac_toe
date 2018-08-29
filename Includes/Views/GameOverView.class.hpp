@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Defines.hpp                                        :+:      :+:    :+:   */
+/*   GameOverView.class.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 12:37:54 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/28 12:37:54 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/29 14:22:31 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/29 14:22:31 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define NCURSES_ON
+#include "Views/AView.class.hpp"
 
-#define START_MENU_VIEW 0
-#define GAME_VIEW 1
-#define GAME_MENU_VIEW 2
-#define CHANGE_OUTPUT_MODE_VIEW 3
-#define GAME_OVER_VIEW 4
+class					Engine::GameOverView : public Engine::AView
+{
+public:
+	size_t				Execute(std::string const &Input) override;
+	void				Display(void) override;
+
+public:
+						GameOverView(Engine &Eng) : AView(Eng) {}
+						~GameOverView(void) {}
+
+private:
+						GameOverView(void);
+						GameOverView(GameOverView const &src);
+	GameOverView		&operator=(GameOverView const &Rhs);
+};

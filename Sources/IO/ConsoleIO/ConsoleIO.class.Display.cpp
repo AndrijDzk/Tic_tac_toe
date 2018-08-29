@@ -33,6 +33,7 @@ void		ConsoleIO::DisplayGame(std::vector<std::vector<char>> const &Field)
 		}
 		std::cout << std::endl;
 	}
+	std::cout << "Type '[y] [x]' to make move" << std::endl;
 	std::cout << "Type 'Menu' to enter game menu" << std::endl;
 	for (i = 0; i < this->ErrorMsgs.size(); i++)
 		std::cout << this->ErrorMsgs[i] << std::endl;
@@ -69,6 +70,18 @@ void		ConsoleIO::DisplayChangeOutputMenu(void)
 #ifndef NCURSES_ON
 	Options[1].append(" (unaviable)");
 #endif
+	this->DisplayMenu(Options);
+}
+
+void		ConsoleIO::DisplayGameOver(char Player)
+{
+	std::vector<std::string>	Options = {
+									"Game Over!",
+									"Player " + std::to_string(static_cast<int>(Player)) + " won",
+									"[B]ack to Main menu"};
+
+	if (Player == 0)
+		Options[1] = "Draw";
 	this->DisplayMenu(Options);
 }
 

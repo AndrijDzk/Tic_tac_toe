@@ -25,8 +25,11 @@ void				ncursesIO::Init(void)
 
 	initscr();
 	getmaxyx(stdscr, y, x);
-	if (y < 3 || x < 3)
-		throw ncursesIO::WindowTooSmallError(y, x);
+	if (y < 20 || x < 20)
+	{
+		endwin();
+		throw AInputOutput::InitError();
+	}
 }
 
 void				ncursesIO::DeInit(void)

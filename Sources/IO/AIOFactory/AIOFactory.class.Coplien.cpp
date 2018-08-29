@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Defines.hpp                                        :+:      :+:    :+:   */
+/*   AIOFactory.class.Coplien.cpp                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adzikovs <adzikovs@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 12:37:54 by adzikovs          #+#    #+#             */
-/*   Updated: 2018/08/28 12:37:54 by adzikovs         ###   ########.fr       */
+/*   Created: 2018/08/29 13:09:07 by adzikovs          #+#    #+#             */
+/*   Updated: 2018/08/29 13:09:07 by adzikovs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "IO/AIOFactory.class.hpp"
 
-#define NCURSES_ON
+#include "IO/ConsoleIO.class.hpp"
+#include "IO/ncursesIO.class.hpp"
 
-#define START_MENU_VIEW 0
-#define GAME_VIEW 1
-#define GAME_MENU_VIEW 2
-#define CHANGE_OUTPUT_MODE_VIEW 3
-#define GAME_OVER_VIEW 4
+AIOFactory::AIOFactory(void)
+{
+	this->FM_IDs.push_back(AIOFactory::Console);
+	this->FactoryMethods.push_back(&AIOFactory::CreateConsoleIO);
+
+	this->FM_IDs.push_back(AIOFactory::ncurses);
+	this->FactoryMethods.push_back(&AIOFactory::Create_ncursesIO);
+}
+
+AIOFactory::~AIOFactory(void) {}
